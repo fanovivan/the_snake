@@ -164,8 +164,7 @@ def main():
             apple.position = apple.randomize_position()
         if (snake.positions[0][0] < 0 or snake.positions[0][0] >= SCREEN_WIDTH
                 or snake.positions[0][1] < 0
-                or snake.positions[0][1] >= SCREEN_HEIGHT
-                ):
+                or snake.positions[0][1] >= SCREEN_HEIGHT):
             snake.reset()
         if snake.positions[0] in snake.positions[1:]:
             snake.reset()
