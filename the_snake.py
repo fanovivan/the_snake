@@ -62,8 +62,8 @@ class Apple(GameObject):
 
     def randomize_position(self):
         """Это метод генерирует случайные координаты для яблока."""
-        return (randint(0, GRID_WIDTH - 1) 
-                * GRID_SIZE, randint(0, GRID_HEIGHT - 1) 
+        return (randint(0, GRID_WIDTH - 1)
+                * GRID_SIZE, randint(0, GRID_HEIGHT - 1)
                 * GRID_SIZE
                 )
 
@@ -124,8 +124,10 @@ class Snake(GameObject):
         self.last = None
 
     def get_head_position(self):
-        """Этот метод возвращает позицию головы змеи 
-        (первый элемент в списке positions)."""
+        """
+        Этот метод возвращает позицию головы змеи
+        (первый элемент в списке positions).
+        """
         return self.positions[0]
 
 
@@ -161,9 +163,9 @@ def main():
             snake.length += 1
             apple.position = apple.randomize_position()
         if (snake.positions[0][0] < 0 or snake.positions[0][0] >= SCREEN_WIDTH
-                or snake.positions[0][1] < 0 
+                or snake.positions[0][1] < 0
                 or snake.positions[0][1] >= SCREEN_HEIGHT
-            ):
+                ):
             snake.reset()
         if snake.positions[0] in snake.positions[1:]:
             snake.reset()
