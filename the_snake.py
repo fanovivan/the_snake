@@ -62,9 +62,13 @@ class Apple(GameObject):
 
     def randomize_position(self):
         """Это метод генерирует случайные координаты для яблока."""
-        return (randint(0, GRID_WIDTH - 1) * GRID_SIZE, randint(0, GRID_HEIGHT - 1) * GRID_SIZE)
+        return (randint(0, GRID_WIDTH - 1) 
+                * GRID_SIZE, randint(0, GRID_HEIGHT - 1) 
+                * GRID_SIZE
+                )
 
     def draw(self):
+        """Этот метод отрисовывает графику."""
         rect = pygame.Rect(self.position, (GRID_SIZE, GRID_SIZE))
         pygame.draw.rect(screen, self.body_color, rect)
         pygame.draw.rect(screen, BORDER_COLOR, rect, 1)
@@ -83,6 +87,7 @@ class Snake(GameObject):
         self.last = None
 
     def draw(self):
+        """Этот метод отрисовывает графику."""
         head_rect = pygame.Rect(self.positions[0], (GRID_SIZE, GRID_SIZE))
         pygame.draw.rect(screen, self.body_color, head_rect)
         pygame.draw.rect(screen, BORDER_COLOR, head_rect, 1)
@@ -117,8 +122,10 @@ class Snake(GameObject):
         self.next_direction = None
         self.body_color = SNAKE_COLOR
         self.last = None
+
     def get_head_position(self):
-        """Этот метод возвращает позицию головы змеи (первый элемент в списке positions)."""
+        """Этот метод возвращает позицию головы змеи 
+        (первый элемент в списке positions)."""
         return self.positions[0]
 
 
@@ -154,11 +161,11 @@ def main():
             snake.length += 1
             apple.position = apple.randomize_position()
         if (snake.positions[0][0] < 0 or snake.positions[0][0] >= SCREEN_WIDTH
-                or snake.positions[0][1] < 0 or snake.positions[0][1] >= SCREEN_HEIGHT):
-            print("Game Over! Вы вышли за границы игрового поля.")
+                or snake.positions[0][1] < 0 
+                or snake.positions[0][1] >= SCREEN_HEIGHT
+            ):
             snake.reset()
         if snake.positions[0] in snake.positions[1:]:
-            print("Game Over! Вы укусили себя за хвост.")
             snake.reset()
 
         snake.move()
