@@ -18,7 +18,6 @@ RIGHT: Pointer = (1, 0)
 
 COLOR = tuple[int, int, int]
 
-
 # Цвет фона - черный:
 BOARD_BACKGROUND_COLOR: COLOR = (0, 0, 0)
 
