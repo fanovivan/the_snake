@@ -62,13 +62,14 @@ class Apple(GameObject):
     """Это класс яблока. Когда змея ест яблоко - она растет."""
 
     def __init__(self, occupied_positions: list[Pointer],
-                body_color: COLOR = APPLE_COLOR):
+                 body_color: COLOR = APPLE_COLOR):
         super().__init__(body_color=body_color)
         self.position = self.randomize_position(occupied_positions)
 
     def randomize_position(self, occupied_positions: list[Pointer]):
         """Это метод генерирует случайные координаты для яблока,
-        избегая занятых позиций."""
+        избегая занятых позиций.
+        """
         while True:
             new_position = (randint(0, GRID_WIDTH - 1) * GRID_SIZE,
                             randint(0, GRID_HEIGHT - 1) * GRID_SIZE)
