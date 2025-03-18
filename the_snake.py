@@ -60,9 +60,11 @@ class GameObject:
 class Apple(GameObject):
     """Это класс яблока. Когда змея ест яблоко - она растет."""
 
-    def __init__(self, occupied_positions: list[Pointer],
+    def __init__(self, occupied_positions = None,
                  body_color: COLOR = APPLE_COLOR):
         super().__init__(body_color=body_color)
+        if occupied_positions is None:
+            occupied_positions = []
         self.position = self.randomize_position(occupied_positions)
 
     def randomize_position(self, occupied_positions: list[Pointer]):
@@ -159,8 +161,7 @@ def main():
     """Это основная функция игры. Здесь выполняются все основные действия."""
     pg.init()
     snake = Snake()
-    apple = Apple(snake.positions)
-
+    apple = Apple()
     while True:
         clock.tick(SPEED)
         screen.fill(BOARD_BACKGROUND_COLOR)
