@@ -60,7 +60,7 @@ class GameObject:
 class Apple(GameObject):
     """Это класс яблока. Когда змея ест яблоко - она растет."""
 
-    def __init__(self, occupied_positions = None,
+    def __init__(self, occupied_positions=None,
                  body_color: COLOR = APPLE_COLOR):
         super().__init__(body_color=body_color)
         if occupied_positions is None:
