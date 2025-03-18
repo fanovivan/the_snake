@@ -61,19 +61,20 @@ class GameObject:
 class Apple(GameObject):
     """Это класс яблока. Когда змея ест яблоко - она растет."""
 
-    def __init__(self, occupied_positions: list[Pointer], body_color: COLOR = APPLE_COLOR):
+    def __init__(self, occupied_positions: list[Pointer],
+                body_color: COLOR = APPLE_COLOR):
         super().__init__(body_color=body_color)
         self.position = self.randomize_position(occupied_positions)
 
     def randomize_position(self, occupied_positions: list[Pointer]):
-        """Это метод генерирует случайные координаты для яблока, 
+        """Это метод генерирует случайные координаты для яблока,
         избегая занятых позиций."""
         while True:
             new_position = (randint(0, GRID_WIDTH - 1) * GRID_SIZE,
                             randint(0, GRID_HEIGHT - 1) * GRID_SIZE)
             if new_position not in occupied_positions:
                 return new_position
-            
+
     def draw(self):
         """Этот метод отрисовывает графику."""
         rect = pg.Rect(self.position, (GRID_SIZE, GRID_SIZE))
@@ -131,7 +132,7 @@ class Snake(GameObject):
 
     def get_head_position(self):
         """
-        Этот метод возвращает позицию головы змеи 
+        Этот метод возвращает позицию головы змеи
         (первый элемент в списке positions).
         """
         return self.positions[0]
