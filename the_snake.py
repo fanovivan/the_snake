@@ -45,6 +45,7 @@ clock = pg.time.Clock()
 ZERO_COLOR: COLOR = (0, 0, 0)
 # Тут опишите все классы игры.
 
+
 class GameObject:
     """Это родительский класс."""
 
