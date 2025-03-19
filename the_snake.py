@@ -42,25 +42,25 @@ pg.display.set_caption('Змейка')
 # Настройка времени:
 clock = pg.time.Clock()
 
-
+ZERO_COLOR: COLOR = (0, 0, 0)
 # Тут опишите все классы игры.
 
 class GameObject:
     """Это родительский класс."""
 
-    def __init__(self, body_color: COLOR = (0, 0, 0)):
+    def __init__(self, body_color: COLOR = ZERO_COLOR):
         self.position = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)
         self.body_color = body_color
 
     def draw(self):
         """Этот метод отрисовывает графику."""
-        raise NotImplementedError()
+        raise NotImplementedError('Ошибка инициализации графики.')
 
 
 class Apple(GameObject):
     """Это класс яблока. Когда змея ест яблоко - она растет."""
 
-    def __init__(self, occupied_positions=None,
+    def __init__(self, occupied_positions: None | Pointer = None,
                  body_color: COLOR = APPLE_COLOR):
         super().__init__(body_color=body_color)
         if occupied_positions is None:
@@ -169,11 +169,7 @@ def main():
         snake.update_direction()
         if snake.get_head_position() == apple.position:
             snake.length += 1
-            apple = Apple(snake.positions)
-        if (snake.positions[0][0] < 0 or snake.positions[0][0] >= SCREEN_WIDTH
-                or snake.positions[0][1] < 0
-                or snake.positions[0][1] >= SCREEN_HEIGHT):
-            snake.reset()
+            apple.position = apple.randomize_position(snake.positions)
         if snake.get_head_position() in snake.positions[1:]:
             snake.reset()
 
