@@ -119,8 +119,9 @@ class Snake(GameObject):
         """Этот метод перемещает змею в соответствии с текущим направлением."""
         new_position = self.get_head_position()
         new_position = ((new_position[0] + (self.direction[0] * GRID_SIZE))
-                         % SCREEN_WIDTH, (new_position[1] + (self.direction[1]
-                         * GRID_SIZE)) % SCREEN_HEIGHT)
+                        % SCREEN_WIDTH,
+                        (new_position[1] + (self.direction[1] * GRID_SIZE))
+                        % SCREEN_HEIGHT)
         self.positions.insert(0, new_position)
         if len(self.positions) > self.length:
             self.positions.pop()
