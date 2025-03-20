@@ -117,10 +117,11 @@ class Snake(GameObject):
 
     def move(self):
         """Этот метод перемещает змею в соответствии с текущим направлением."""
-        head_x, head_y = self.get_head_position()
-        head_x = (head_x + (self.direction[0] * GRID_SIZE)) % SCREEN_WIDTH
-        head_y = (head_y + (self.direction[1] * GRID_SIZE)) % SCREEN_HEIGHT
-        self.positions.insert(0, (head_x, head_y))
+        new_position = self.get_head_position()
+        new_position = ((new_position[0] + (self.direction[0] * GRID_SIZE))
+                         % SCREEN_WIDTH, (new_position[1] + (self.direction[1]
+                         * GRID_SIZE)) % SCREEN_HEIGHT)
+        self.positions.insert(0, new_position)
         if len(self.positions) > self.length:
             self.positions.pop()
 
@@ -162,7 +163,7 @@ def main():
     """Это основная функция игры. Здесь выполняются все основные действия."""
     pg.init()
     snake = Snake()
-    apple = Apple()
+    apple = Apple(snake.positions)
     while True:
         clock.tick(SPEED)
         screen.fill(BOARD_BACKGROUND_COLOR)
